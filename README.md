@@ -3,6 +3,7 @@
 
 Uma ferramenta que gera arquivos PDFs de certificados de conclusão de curso a partir de dados de um CSV.
 
+![Gif Generator](assets/images/gif-generator.gif)
 
 <h3 align="left"> Tecnologias Usadas </h3>
 
