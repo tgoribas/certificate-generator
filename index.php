@@ -25,76 +25,10 @@ $certificate->getCertificate($config->getFileCSV());
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&family=Great+Vibes&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/style/style.css" >
     <style>
-.background-certificate {
-    background-image: url(assets/images/certificado.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    width: 3508px !important;
-    height: 2480px !important;
-}
-
-.pt-certificate{
-    padding-top: 550px !important;
-}
-
-.text-certificate {
-    font-family: 'Roboto', sans-serif;
-    font-size: 70px;
-    font-weight: 500;
-    color: #434142;
-}
-
-.text-curso{
-    font-family: 'Great Vibes', cursive;
-    font-size: 250px;
-    margin-top: 150px;
-}
-.text-details{
-    margin-top: 150px;
-    font-size: 70px !important;
-}
-
-.span-mark {
-    font-size: 80px !important;
-    font-weight: 600 !important;
-}
-
-.color-mark{
-    color: #604784 !important;
-}
-
-.Loading {
-  position: relative;
-  display: inline-block;
-  width: 100%;
-  height: 10px;
-  background: #f1f1f1;
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.Loading:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  width: 0;
-  height: 100%;
-  border-radius: 4px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-  animation: load <?php  echo $certificate->getTotalRow() * 4 ?>s infinite;
-}
-
-@keyframes load {
-  0% { width: 0;background: #a28089; }
-  25% { width: 40%;background: #a0d2eb; }
-  50% { width: 60%;background: #ffa8b6; }
-  75% { width: 75%;background: #d0bdf4; }
-  100% { width: 100%;background: #494d5f; }
-}
-
-</style>
+    .Loading:after { animation: load <?php  echo $certificate->getTotalRow() * 4 ?>s infinite; }
+    </style>
 </head>
 
 <body>
@@ -102,8 +36,8 @@ $certificate->getCertificate($config->getFileCSV());
     <?php
     if (isset($_GET['certificate']) and $_GET['certificate'] == 'start') {
         echo '
-        <div class="container vh-100 h-100 bg-dark pt-5 pb-5" style="margin-left: 0 !important;">
-        <div class="col-md-12 m-auto text-dark text-center" style="height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
+        <div id="preloader">
+        <div class="col-md-12 m-auto text-dark text-center" style="height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;;padding: 0 10%;">
             <div class="Loading"></div>
         </div>
         </div>';
@@ -113,9 +47,7 @@ $certificate->getCertificate($config->getFileCSV());
         mkdir(__DIR__ . '/certificate/' . $newFolder, 0777, true);
 
         foreach ($certificate->dados as $row => $dado) {
-
             $artigo = ($dado['gender'] == 'm') ? 'o' : 'a';
-
             echo '
             <div id="content_test_' . $row . '">
                 <div id="html-content-holder" class="background-certificate" style="/*clip-path: inset(0 100% 0 0);*/margin:0;">
@@ -130,12 +62,11 @@ $certificate->getCertificate($config->getFileCSV());
             </div>';
         }
     } elseif (isset($_GET['certificate']) and $_GET['certificate'] == 'end') {
-
         $certificate->delImage();
         echo '
         <div class="container-fluider vh-100 bg-success h-100 pt-5 pb-5">
             <div class="col-md-12 m-auto text-dark text-center" style="height: 100%;display: flex;flex-direction: column;justify-content: center;align-items: center;">
-                <a class="btn btn-larger btn-success fs-3 px-5 py-2">Certificados Gerados com sucesso</a>
+                <a href="' . $config->URL . '" class="btn btn-larger btn-success fs-3 px-5 py-2">Certificados Gerados</a>
             </div>
         </div>
         ';
@@ -165,7 +96,7 @@ $certificate->getCertificate($config->getFileCSV());
                         <td class="text-start">' . $dado['name'] .'</td>
                         <td class="text-start">' . $dado['doc'] .'</td>
                         <td class="text-start">' . $dado['date'] .'</td>
-                        <td class="text-start">' .( ($dado['gender']=='m') ? 'Masculino' : 'Feminino'  ).'</td>
+                        <td class="text-start">' . (($dado['gender']=='m') ? 'Masculino' : 'Feminino') .'</td>
                         <td class="text-start">' . $dado['course'] .'</td>
                         <td class="text-start">' . $dado['workload'] .'</td>
                         <td class="text-start">' . $dado['startMonth'] .' de ' . $dado['startYear'] .' </td>
@@ -195,6 +126,8 @@ $certificate->getCertificate($config->getFileCSV());
     ?>
     window.onload = function() { 
 
+        document.getElementById("preloader").style.display="block";
+        
         total_certificate = <?php echo $certificate->getTotalRow() ?>;
         file_name = <?php echo $certificate->arrayJavascript()?>;
 

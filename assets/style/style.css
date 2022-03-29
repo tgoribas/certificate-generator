@@ -1,0 +1,98 @@
+
+.background-certificate {
+    background-image: url(assets/images/certificado.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 3508px !important;
+    height: 2480px !important;
+}
+
+.pt-certificate{
+    padding-top: 550px !important;
+}
+
+.text-certificate {
+    font-family: 'Roboto', sans-serif;
+    font-size: 70px;
+    font-weight: 500;
+    color: #434142;
+}
+
+.text-curso{
+    font-family: 'Great Vibes', cursive;
+    font-size: 250px;
+    margin-top: 150px;
+}
+.text-details{
+    margin-top: 150px;
+    font-size: 70px !important;
+}
+
+.span-mark {
+    font-size: 80px !important;
+    font-weight: 600 !important;
+}
+
+.color-mark{
+    color: #604784 !important;
+}
+
+#preloader {
+    z-index: 1100;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.8);
+}
+
+.Loading {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 10px;
+    background: #f1f1f1;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, .2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .Loading:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, .2);
+    animation: load <?php  echo $certificate->getTotalRow() * 4 ?>s infinite;
+  }
+  
+  @keyframes load {
+    0% {
+      width: 0;
+      background: #118B0B;
+    }
+    
+    25% {
+      width: 40%;
+      background: #1FA808;
+    }
+    
+    50% {
+      width: 60%;
+      background: #2EC506;
+    }
+    
+    75% {
+      width: 75%;
+      background: #3CE203;
+    }
+    
+    100% {
+      width: 100%;
+      background: #4AFF00;
+    }
+  }
