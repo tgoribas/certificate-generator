@@ -50,7 +50,7 @@ $certificate->getCertificate($config->getFileCSV());
             $artigo = ($dado['gender'] == 'm') ? 'o' : 'a';
             echo '
             <div id="content_test_' . $row . '">
-                <div id="html-content-holder" class="background-certificate" style="/*clip-path: inset(0 100% 0 0);*/margin:0;">
+                <div id="html-content-holder" class="background-certificate" style="clip-path: inset(0 100% 0 0);margin:0;">
                     <div class="container-fluid">
                         <div class="text-center">
                             <p class="text-certificate pt-certificate">Certificamos que, <span class="span-mark color-mark">' . $dado['name'] . '</span> portador' . $artigo . ' do RG:' . $dado['doc'] . ',<br>e nascid' . $artigo . ' em ' . $dado['date'] . ' concluiu nesta Instituição de Ensino, o curso de:</p>

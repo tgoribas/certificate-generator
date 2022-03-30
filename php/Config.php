@@ -9,12 +9,14 @@ class Config{
 
     public $URL;
     public $FOLDER;
+    public $DIR;
     public $fileCSV;
 
     public function __construct()
     {
         $this->setURL('http://' . $_SERVER['HTTP_HOST'] . '/certificate-generator');
-        $this->setFOLDER($_SERVER['DOCUMENT_ROOT'] . '/certificate-generator');
+        $this->setDIR($_SERVER['DOCUMENT_ROOT'] . '/certificate-generator');
+        $this->setFOLDER('certificate');
         $this->setFileCSV('certificados.csv');
     }
 
@@ -74,6 +76,26 @@ class Config{
     public function setFOLDER($FOLDER)
     {
         $this->FOLDER = $FOLDER;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of DIR
+     */ 
+    public function getDIR()
+    {
+        return $this->DIR;
+    }
+
+    /**
+     * Set the value of DIR
+     *
+     * @return  self
+     */ 
+    public function setDIR($DIR)
+    {
+        $this->DIR = $DIR;
 
         return $this;
     }

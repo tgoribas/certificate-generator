@@ -15,7 +15,7 @@ $fileName = $_POST['name'];
 $newFolder = $_SESSION['newFolder'] = $_POST['newFolder'];
 
 // Cria pasta para salvar os arquivos
-$filedir = '../certificate/' . $newFolder ;
+$filedir = '../' . $config->FOLDER . '/' . $newFolder ;
 $filePath = $filedir . "/" . $fileName . ".png" ;
 
 // Prepara a imagem em PNG
@@ -25,8 +25,8 @@ $decoded = base64_decode($image);
 // Salva a imagem no formato PNG
 file_put_contents($filePath, $decoded, LOCK_EX);
 
-$folderImagick = $config->FOLDER . "/certificate/" . $newFolder . "/" . $fileName . ".png";
-$pdfImagick    = $config->FOLDER . "/certificate/" . $newFolder . "/" . $fileName . ".pdf";
+$folderImagick = $config->DIR . "/" . $config->FOLDER . "/" . $newFolder . "/" . $fileName . ".png";
+$pdfImagick    = $config->DIR . "/" . $config->FOLDER . "/" . $newFolder . "/" . $fileName . ".pdf";
 
 $img = new Imagick($folderImagick);
 $img->setImageCompressionQuality(100);

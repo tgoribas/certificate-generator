@@ -1,6 +1,6 @@
 
 .background-certificate {
-    background-image: url(assets/images/certificado.jpg);
+    background-image: url(../images/certificado.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     width: 3508px !important;
@@ -67,7 +67,6 @@
     height: 100%;
     border-radius: 4px;
     box-shadow: 0 0 5px rgba(0, 0, 0, .2);
-    animation: load <?php  echo $certificate->getTotalRow() * 4 ?>s infinite;
   }
   
   @keyframes load {
